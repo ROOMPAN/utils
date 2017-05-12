@@ -101,7 +101,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
         tabsContainer = new LinearLayout(context);
         tabsContainer.setOrientation(LinearLayout.HORIZONTAL);
-//        tabsContainer.setGravity(Gravity.CENTER);
+        tabsContainer.setGravity(Gravity.CENTER); //设置tablayout 里面的控件居中显示
         tabsContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         addView(tabsContainer);
 
