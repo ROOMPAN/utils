@@ -1,4 +1,4 @@
-package com.leshu.leshuvoice.__widgets;
+package com.joaye.hixgo.views.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -22,7 +22,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.leshu.leshuvoice.R;
+import com.joaye.hixgo.R;
 
 import java.util.Locale;
 
@@ -66,6 +66,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     private int scrollOffset = 52;
     private int indicatorHeight = 8;
+    private int indicatorWidth = 10;
     private int underlineHeight = 2;
     private int dividerPadding = 10;
     private int tabPadding = 24;
@@ -101,7 +102,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
         tabsContainer = new LinearLayout(context);
         tabsContainer.setOrientation(LinearLayout.HORIZONTAL);
-        tabsContainer.setGravity(Gravity.CENTER); //设置tablayout 里面的控件居中显示
+        tabsContainer.setGravity(Gravity.CENTER);//设置标题居中显示
         tabsContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         addView(tabsContainer);
 
@@ -137,6 +138,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         underlineColor = a.getColor(R.styleable.PagerSlidingTabStrip_pstsUnderlineColor, underlineColor);
         dividerColor = a.getColor(R.styleable.PagerSlidingTabStrip_pstsDividerColor, dividerColor);
         indicatorHeight = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsIndicatorHeight, indicatorHeight);
+        indicatorWidth = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsIndicatorWidtht, indicatorWidth);
         underlineHeight = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsUnderlineHeight, underlineHeight);
         dividerPadding = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsDividerPadding, dividerPadding);
         tabPadding = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsTabPaddingLeftRight, tabPadding);
@@ -169,6 +171,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         if (pager.getAdapter() == null) {
             throw new IllegalStateException("ViewPager does not have adapter instance.");
         }
+
         pager.setOnPageChangeListener(pageListener);
 
         notifyDataSetChanged();
@@ -323,8 +326,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             lineLeft = (currentPositionOffset * nextTabLeft + (1f - currentPositionOffset) * lineLeft);
             lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
         }
+        //TODO 添加滑动的底部实现长短
 
-        canvas.drawRect(lineLeft + 30, height - indicatorHeight, lineRight - 30, height, rectPaint);
+        canvas.drawRect(lineLeft + indicatorWidth, height - indicatorHeight, lineRight - indicatorWidth, height, rectPaint);
 
         // draw divider
 
